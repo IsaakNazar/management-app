@@ -1,0 +1,30 @@
+.employee {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .left {
+    display: flex;
+    align-items: center;
+  }
+
+  &_profile {
+
+    &_position {
+      font-weight: bold;
+    }
+  }
+
+  .right {
+    display: flex;
+  }
+
+  &_btn {
+    height: fit-content;
+    cursor: pointer;
+    img {
+      width: 30px;
+    }
+  }
+
+}

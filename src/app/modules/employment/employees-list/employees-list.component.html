@@ -1,0 +1,24 @@
+<div class="employees" (keydown.escape)="closeModal()">
+  <h1 class="employees_title">Employees List</h1>
+
+  <input
+    class="employees_input"
+    type="text"
+    placeholder="search"
+    (keyup)="searchTerm$.next($event)">
+
+  <app-employee
+    *ngFor="let employee of employeesList"
+    [employee]="employee"
+    (onDeleteEvent)="openModal($event)"
+  ></app-employee>
+</div>
+
+<app-confirm-popup
+  [isShow]="isShowModal"
+  (onClose)="closeModal()"
+>
+  <h1>hello</h1>
+  <h1>hello</h1>
+  <h1>hello</h1>
+</app-confirm-popup>

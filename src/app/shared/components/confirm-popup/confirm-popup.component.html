@@ -1,0 +1,8 @@
+<div *ngIf="isShow" class="modal">
+
+  <div class="modal_content">
+    <span class="modal_close" (click)="closeModal()">&times;</span>
+    <ng-content></ng-content>
+  </div>
+
+</div>

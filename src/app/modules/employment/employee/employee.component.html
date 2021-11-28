@@ -1,0 +1,24 @@
+<div class="employee">
+  <div class="left">
+    <img src="../../../../assets/images/user.png" alt="user">
+
+    <div class="employee_profile">
+      <h1>{{fullName}}</h1>
+      <p class="employee_profile_position">{{employee.Position}}</p>
+    </div>
+  </div>
+
+
+  <div class="right">
+    <button class="employee_btn" (click)="deleteEmployee(employee.Id)">
+      <img src="../../../../assets/images/delete-user.png"
+           alt="delete button">
+    </button>
+
+    <button [disabled]="employee.Blocked" class="employee_btn">
+      <img src="../../../../assets/images/edit-user.png"
+           alt="edit button">
+    </button>
+  </div>
+
+</div>
