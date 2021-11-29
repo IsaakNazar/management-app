@@ -1,0 +1,29 @@
+button {
+  color: white;;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+}
+
+.cancel {
+  background: #0d6efd;
+  border: #0d6efd;
+}
+
+.delete {
+  background: #dc3545;
+  border: #dc3545;
+}
+
+.save {
+  background: #198754;
+  border: #198754;
+}

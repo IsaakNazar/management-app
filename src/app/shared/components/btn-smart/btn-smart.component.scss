@@ -1,0 +1,12 @@
+button {
+  height: fit-content;
+  cursor: pointer;
+
+  img {
+    width: 30px;
+  }
+
+  &:disabled {
+    cursor: unset;
+  }
+}

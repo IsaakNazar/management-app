@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { EmployeesService } from "../employees.service";
 import { Employee } from "../../../shared/models/employee";
 import { Observable, Subject, Subscription } from "rxjs";
@@ -10,10 +10,16 @@ import { Observable, Subject, Subscription } from "rxjs";
 })
 export class EmployeesListComponent implements OnInit, OnDestroy {
 
+  @HostListener('document:keydown.escape', ['$event'])
+  onKeydownHandler(event: KeyboardEvent) {
+    this.closeModal()
+  }
+
   employeesList: Employee[] = []
   searchTerm$ = new Subject<any>();
   subscription: Subscription
   isShowModal: boolean = false
+  employee: Employee
 
   constructor(private employeesService: EmployeesService) {
   }
@@ -33,13 +39,12 @@ export class EmployeesListComponent implements OnInit, OnDestroy {
       .subscribe(arr => this.employeesList = arr)
   }
 
-  openModal(employeeId: string) {
-    console.log(employeeId);
+  openModal(employee: Employee) {
     this.isShowModal = true
+    this.employee = employee
   }
 
   closeModal() {
-    console.log('key');
     this.isShowModal = false
   }
 

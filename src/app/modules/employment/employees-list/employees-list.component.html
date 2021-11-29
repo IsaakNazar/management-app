@@ -1,4 +1,4 @@
-<div class="employees" (keydown.escape)="closeModal()">
+<div class="employees">
   <h1 class="employees_title">Employees List</h1>
 
   <input
@@ -15,10 +15,13 @@
 </div>
 
 <app-confirm-popup
+  *ngIf="employee"
   [isShow]="isShowModal"
   (onClose)="closeModal()"
 >
-  <h1>hello</h1>
-  <h1>hello</h1>
-  <h1>hello</h1>
+  <div>Are you sure that you want to remove <strong>{{employee.FirstName}} {{employee.SecondName}}</strong> </div>
+  <div>
+    <btn-text label="delete"></btn-text>
+    <btn-text label="cancel"></btn-text>
+  </div>
 </app-confirm-popup>

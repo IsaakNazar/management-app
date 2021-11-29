@@ -10,15 +10,17 @@
 
 
   <div class="right">
-    <button class="employee_btn" (click)="deleteEmployee(employee.Id)">
-      <img src="../../../../assets/images/delete-user.png"
-           alt="delete button">
-    </button>
+    <btn-smart
+      icon="delete-user"
+      (click)="deleteEmployee(employee)"
+    >
+    </btn-smart>
 
-    <button [disabled]="employee.Blocked" class="employee_btn">
-      <img src="../../../../assets/images/edit-user.png"
-           alt="edit button">
-    </button>
+    <btn-smart
+      [disabled]="employee.Blocked"
+      icon="edit-user"
+    >
+    </btn-smart>
   </div>
 
 </div>

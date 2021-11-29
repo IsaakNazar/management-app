@@ -9,7 +9,7 @@ import { Employee } from "../../../shared/models/employee";
 export class EmployeeComponent implements OnInit {
 
   @Input() employee: Employee
-  @Output() onDeleteEvent = new EventEmitter<string>()
+  @Output() onDeleteEvent = new EventEmitter<Employee>()
 
   constructor() { }
 
@@ -20,8 +20,8 @@ export class EmployeeComponent implements OnInit {
     return `${this.employee.FirstName} ${this.employee.SecondName}`
   }
 
-  deleteEmployee(employeeId: string) {
-    this.onDeleteEvent.emit(employeeId)
+  deleteEmployee(employee: Employee) {
+    this.onDeleteEvent.emit(employee)
   }
 
 }
