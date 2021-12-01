@@ -8,6 +8,7 @@ import { Observable, Subject, Subscription } from "rxjs";
   templateUrl: './employees-list.component.html',
   styleUrls: ['./employees-list.component.scss']
 })
+
 export class EmployeesListComponent implements OnInit, OnDestroy {
 
   @HostListener('document:keydown.escape', ['$event'])
@@ -20,6 +21,7 @@ export class EmployeesListComponent implements OnInit, OnDestroy {
   subscription: Subscription
   isShowModal: boolean = false
   employee: Employee
+  employeeStore = localStorage.getItem('employeesList')
 
   constructor(private employeesService: EmployeesService) {
   }
@@ -29,23 +31,37 @@ export class EmployeesListComponent implements OnInit, OnDestroy {
     this.filterList(this.searchTerm$);
   }
 
-  getAllEmployees() {
-    this.subscription = this.employeesService.getAll()
-      .subscribe(employees => this.employeesList = employees)
+  getAllEmployees(): void {
+    const length = this.employeeStore && JSON.parse(this.employeeStore).length
+    if (length) {
+      this.employeesList = this.employeeStore && JSON.parse(this.employeeStore)
+    } else {
+      this.subscription = this.employeesService.getAll()
+        .subscribe((employees: Employee[]) => {
+          this.employeesList = employees
+          localStorage.setItem('employeesList', JSON.stringify(employees))
+        })
+    }
   }
 
-  filterList(terms: Observable<any>) {
+  filterList(terms: Observable<any>): void {
     this.employeesService.search(terms)
       .subscribe(arr => this.employeesList = arr)
   }
 
-  openModal(employee: Employee) {
-    this.isShowModal = true
+  openModal(employee: Employee): void {
     this.employee = employee
+    this.isShowModal = true
   }
 
-  closeModal() {
+  closeModal(): void {
     this.isShowModal = false
+  }
+
+  deleteEmployee(employeeId: string) {
+    this.employeesList = this.employeesList.filter(item => item.Id !== employeeId)
+    localStorage.setItem('employeesList', JSON.stringify(this.employeesList))
+    this.closeModal()
   }
 
   ngOnDestroy(): void {

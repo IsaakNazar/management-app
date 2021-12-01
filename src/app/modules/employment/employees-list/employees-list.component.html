@@ -21,7 +21,7 @@
 >
   <div>Are you sure that you want to remove <strong>{{employee.FirstName}} {{employee.SecondName}}</strong> </div>
   <div>
-    <btn-text label="delete"></btn-text>
-    <btn-text label="cancel"></btn-text>
+    <btn-text label="delete" (click)="deleteEmployee(employee.Id)"></btn-text>
+    <btn-text label="cancel" (click)="closeModal()"></btn-text>
   </div>
 </app-confirm-popup>
